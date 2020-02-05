@@ -1,15 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import BasePage from '../components/layout/basePage'
+import BasePage from "../components/layout/basePage";
+import Form from "../components/form/form";
 
 const Index = () => (
-  <div>
-    <BasePage index={["1"]} >
-      <div>
-        Form-Page
-      </div>
-    </BasePage>
-  </div>
-)
+  <BasePage index={["1"]}>
+    <Form />
+  </BasePage>
+);
 
-export default Index
+export default Index;
