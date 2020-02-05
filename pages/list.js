@@ -2,14 +2,14 @@ import React from 'react'
 
 import BasePage from '../components/layout/basePage'
 
-const Index = () => (
+const List = () => (
   <div>
     <BasePage >
       <div>
-        Form-Page
+        List-Page
       </div>
     </BasePage>
   </div>
 )
 
-export default Index
+export default List
