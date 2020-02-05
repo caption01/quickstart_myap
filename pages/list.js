@@ -4,7 +4,7 @@ import BasePage from '../components/layout/basePage'
 
 const List = () => (
   <div>
-    <BasePage >
+    <BasePage index={["2"]} >
       <div>
         List-Page
       </div>

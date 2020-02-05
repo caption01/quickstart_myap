@@ -4,7 +4,7 @@ import BasePage from '../components/layout/basePage'
 
 const Index = () => (
   <div>
-    <BasePage >
+    <BasePage index={["1"]} >
       <div>
         Form-Page
       </div>

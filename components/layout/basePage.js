@@ -1,4 +1,5 @@
 import React, { Children } from 'react'
+import Link from 'next/link'
 
 import { Layout, Menu, Breadcrumb } from 'antd';
 
@@ -9,7 +10,7 @@ class BasePage extends React.Component {
 
         const { Header, Content } = Layout;
 
-        const { children } = this.props
+        const { children, index } = this.props
 
         return(
             <div>
@@ -19,11 +20,19 @@ class BasePage extends React.Component {
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={index}
                         style={{ lineHeight: '64px' }}
                     >
-                        <Menu.Item key="1">Form</Menu.Item>
-                        <Menu.Item key="2">List</Menu.Item>
+                        <Menu.Item key="1">
+                            <Link href='/index'>
+                                Form
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <Link href='/list'>
+                                List
+                            </Link>
+                        </Menu.Item>
                     </Menu>
                     </Header>
                     <Content style={{ padding: '50px 50px' }}>

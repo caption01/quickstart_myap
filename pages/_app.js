@@ -7,7 +7,6 @@ class Myapp extends App {
 
     static getInitialProps = async (appContext) => {
         const pageProps = await App.getInitialProps(appContext)
-        // return { appProps }
         return {...pageProps}
     }
 
