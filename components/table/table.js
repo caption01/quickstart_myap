@@ -3,14 +3,6 @@ import { Table, Divider } from "antd";
 
 import EditModal from "../modal/edit.modal";
 
-const modalController = (modalCurrentState, setModalState) => {
-  return setModalState(!modalCurrentState);
-};
-
-const selectTask = (selectedTask, setTaskAction) => {
-  return setTaskAction(selectedTask);
-};
-
 const TableComponent = ({ tasks, deleteTask }) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [taskTarget, setTaskTarget] = useState({});
@@ -38,8 +30,8 @@ const TableComponent = ({ tasks, deleteTask }) => {
         <span>
           <a
             onClick={() => {
-              modalController(modalStatus, setModalStatus);
-              selectTask(record, setTaskTarget);
+              setModalStatus(!modalStatus);
+              setTaskTarget(record);
             }}
           >
             edit

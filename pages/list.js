@@ -11,7 +11,6 @@ const deleteTask = async id => {
     const response = await axios.delete(
       `http://laravelapi.co/api/tasks/${target}`
     );
-    console.log(response.status);
     if (response.status === 200) {
       return Router.push("/list");
     }
