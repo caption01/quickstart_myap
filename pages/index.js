@@ -1,11 +1,14 @@
 import React from "react";
+import { Card } from "antd";
 
 import BasePage from "../components/layout/basePage";
-import Form from "../components/form/form";
+import WrappedForm from "../components/form/form";
 
 const Index = () => (
   <BasePage index={["1"]}>
-    <Form />
+    <Card hoverable={true} style={{ maxWidth: "400px" }} title="New Task">
+      <WrappedForm />
+    </Card>
   </BasePage>
 );
 
