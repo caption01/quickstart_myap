@@ -53,7 +53,7 @@ const TableComponent = ({ tasks, deleteTask }) => {
       {modalStatus ? (
         <EditModal
           status={modalStatus}
-          modalToggle={() => modalController(modalStatus, setModalStatus)}
+          modalToggle={() => setModalStatus(!modalStatus)}
           taskTarget={taskTarget}
         />
       ) : null}
