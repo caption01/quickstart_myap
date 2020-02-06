@@ -18,10 +18,14 @@ class BasePage extends Component {
             style={{ lineHeight: "64px" }}
           >
             <Menu.Item key="1">
-              <Link href="/index">Form</Link>
+              <Link href="/index">
+                <a>Form</a>
+              </Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link href="/list">List</Link>
+              <Link href="/list">
+                <a>List</a>
+              </Link>
             </Menu.Item>
           </Menu>
         </Header>

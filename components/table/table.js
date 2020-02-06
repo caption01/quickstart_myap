@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Table, Divider, Tag } from "antd";
 
-const TableComponent = () => {
+const TableComponent = ({ tasks, deleteTask }) => {
   const columns = [
     {
       title: "ID",
@@ -25,31 +25,13 @@ const TableComponent = () => {
         <span>
           <a>edit</a>
           <Divider type="vertical" />
-          <a>delete</a>
+          <a onClick={() => deleteTask(record.id)}>delete</a>
         </span>
       )
     }
   ];
 
-  const data = [
-    {
-      id: "1",
-      title: "running",
-      description: "30 km."
-    },
-    {
-      id: "2",
-      title: "eatting",
-      description: "pork-chop"
-    },
-    {
-      id: "3",
-      title: "sleeping",
-      description: "sleeping at 10.00 pm"
-    }
-  ];
-
-  return <Table columns={columns} dataSource={data} />;
+  return <Table columns={columns} dataSource={tasks} />;
 };
 
 export default TableComponent;
