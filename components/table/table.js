@@ -1,7 +1,20 @@
-import React, { Component } from "react";
-import { Table, Divider, Tag } from "antd";
+import React, { useState, useEffect } from "react";
+import { Table, Divider } from "antd";
+
+import EditModal from "../modal/edit.modal";
+
+const modalController = (modalCurrentState, setModalState) => {
+  return setModalState(!modalCurrentState);
+};
+
+const selectTask = (selectedTask, setTaskAction) => {
+  return setTaskAction(selectedTask);
+};
 
 const TableComponent = ({ tasks, deleteTask }) => {
+  const [modalStatus, setModalStatus] = useState(false);
+  const [taskTarget, setTaskTarget] = useState({});
+
   const columns = [
     {
       title: "ID",
@@ -23,7 +36,14 @@ const TableComponent = ({ tasks, deleteTask }) => {
       key: "action",
       render: (text, record) => (
         <span>
-          <a>edit</a>
+          <a
+            onClick={() => {
+              modalController(modalStatus, setModalStatus);
+              selectTask(record, setTaskTarget);
+            }}
+          >
+            edit
+          </a>
           <Divider type="vertical" />
           <a onClick={() => deleteTask(record.id)}>delete</a>
         </span>
@@ -31,7 +51,22 @@ const TableComponent = ({ tasks, deleteTask }) => {
     }
   ];
 
-  return <Table columns={columns} dataSource={tasks} />;
+  return (
+    <>
+      <Table
+        columns={columns}
+        dataSource={tasks}
+        rowKey={record => record.id}
+      />
+      {modalStatus ? (
+        <EditModal
+          status={modalStatus}
+          modalToggle={() => modalController(modalStatus, setModalStatus)}
+          taskTarget={taskTarget}
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default TableComponent;
