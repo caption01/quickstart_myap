@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table, Divider } from "antd";
 
 import EditModal from "../modal/edit.modal";

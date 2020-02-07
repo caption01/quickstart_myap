@@ -1,31 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Input } from "antd";
-import axios from "axios";
-import Router from "next/router";
+import { connect } from "react-redux";
+
+import { editTask } from "../../redux/task/task.action";
 
 const handleInputChange = (e, field, action) => {
   const { value, name } = e.target;
   return action({ ...field, [name]: value });
 };
 
-const handleSubmit = async field => {
-  try {
-    const response = await axios.put(
-      `http://laravelapi.co/api/tasks/${field.id}`,
-      {
-        title: field.title,
-        description: field.description
-      }
-    );
-    if (response.status === 200) {
-      return Router.push("/list");
-    }
-  } catch (err) {
-    console.log("fail to update task" + err.message);
-  }
-};
-
-const EditModal = ({ status, modalToggle, taskTarget }) => {
+const EditModal = ({ status, modalToggle, taskTarget, editTask }) => {
   const [field, setField] = useState({
     id: taskTarget.id,
     title: taskTarget.title,
@@ -37,7 +21,7 @@ const EditModal = ({ status, modalToggle, taskTarget }) => {
         title="Basic Modal"
         visible={status}
         onOk={() => {
-          handleSubmit(field);
+          editTask(field);
           modalToggle();
         }}
         onCancel={() => modalToggle()}
@@ -59,4 +43,8 @@ const EditModal = ({ status, modalToggle, taskTarget }) => {
   );
 };
 
-export default EditModal;
+const mapDispatchToProps = dispatch => ({
+  editTask: field => dispatch(editTask(field))
+});
+
+export default connect(null, mapDispatchToProps)(EditModal);

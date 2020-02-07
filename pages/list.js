@@ -1,43 +1,33 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Router from "next/router";
+import React, { useEffect } from "react";
 
+import { connect } from "react-redux";
+
+// component
 import BasePage from "../components/layout/basePage";
 import Table from "../components/table/table";
 
-const deleteTask = async id => {
-  const target = id;
-  try {
-    const response = await axios.delete(
-      `http://laravelapi.co/api/tasks/${target}`
-    );
-    if (response.status === 200) {
-      return Router.push("/list");
-    }
-  } catch (err) {
-    console.log("delete method error" + err.message);
-  }
-};
+// action
+import { getTasksList, deleteTask } from "../redux/task/task.action";
 
-const List = ({ tasks }) => {
+const List = ({ taskListData, getTasksList, deleteTask }) => {
+  useEffect(() => {
+    getTasksList();
+  }, []);
+
   return (
     <BasePage index={["2"]}>
-      <Table tasks={tasks} deleteTask={deleteTask} />
+      <Table tasks={taskListData} deleteTask={deleteTask} />
     </BasePage>
   );
 };
 
-List.getInitialProps = async () => {
-  try {
-    const response = await axios({
-      method: "get",
-      url: "http://laravelapi.co/api/tasks"
-    });
-    const taskList = await response.data;
-    return { tasks: taskList };
-  } catch (err) {
-    console.log("fail to fetch", err.message);
-  }
-};
+const mapStateToProps = state => ({
+  taskListData: state.task.list
+});
 
-export default List;
+const mapDispatchToProps = dispatch => ({
+  getTasksList: () => dispatch(getTasksList()),
+  deleteTask: id => dispatch(deleteTask(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
