@@ -31,7 +31,7 @@ const addTask = (e, form) => {
 
 const Index = () => (
   <BasePage index={["1"]}>
-    <Card hoverable={true} style={{ maxWidth: "400px" }} title="New Task">
+    <Card hoverable style={{ maxWidth: "400px" }} title="New Task">
       <WrappedForm addTask={addTask} />
     </Card>
   </BasePage>
