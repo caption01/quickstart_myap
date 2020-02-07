@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, message } from "antd";
+import { Card } from "antd";
 import axios from "axios";
 import Router from "next/router";
 import { connect } from "react-redux";
@@ -35,8 +35,14 @@ const addTask = (e, form) => {
 };
 
 const Index = ({ taskMessage }) => {
-  const [message, setMessage] = useState(taskMessage);
+  const [message, setMessage] = useState("messsage init.");
+
+  useEffect(() => {
+    setMessage(taskMessage);
+  }, [taskMessage]);
+
   console.log(message);
+
   return (
     <BasePage index={["1"]}>
       <Card hoverable style={{ maxWidth: "400px" }} title="New Task">

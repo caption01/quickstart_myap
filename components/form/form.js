@@ -1,13 +1,19 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
+import { connect } from "react-redux";
 
-const TaskForm = ({ form, addTask }) => {
+import { taskTest } from "../../redux/task/task.action";
+
+const TaskForm = ({ form, addTask, taskTest }) => {
   const { getFieldDecorator } = form;
   return (
     <Form
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 12 }}
-      onSubmit={e => addTask(e, form)}
+      onSubmit={e => {
+        addTask(e, form);
+        taskTest("form submit");
+      }}
       layout={"vertical"}
     >
       <Form.Item label="Title">
@@ -31,4 +37,8 @@ const TaskForm = ({ form, addTask }) => {
 
 const WrappedForm = Form.create({ name: "coordinated" })(TaskForm);
 
-export default WrappedForm;
+const mapDispatchToProps = dispatch => ({
+  taskTest: message => dispatch(taskTest(message))
+});
+
+export default connect(null, mapDispatchToProps)(WrappedForm);
