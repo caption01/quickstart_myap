@@ -1,15 +1,19 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
 
-import BasePage from '../components/layout/basePage'
+import BasePage from "../components/layout/basePage";
 
-const Index = () => (
-  <div>
-    <BasePage index={["1"]} >
-      <div>
-        Form-Page
-      </div>
+const Index = props => {
+  console.log(props.taskState);
+  return (
+    <BasePage index={["1"]}>
+      <div>Form-Page</div>
     </BasePage>
-  </div>
-)
+  );
+};
 
-export default Index
+const mapStateToProps = state => ({
+  taskState: state.task
+});
+
+export default connect(mapStateToProps, null)(Index);
