@@ -1,13 +1,17 @@
 import { taskType } from "./task.type";
 
 const INITIAL_STATE = {
-  list: []
+  list: [],
+  message: "i am null"
 };
 
 const taskReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case taskType.TEST:
-      return action.payload;
+      return {
+        ...state,
+        message: action.payload
+      };
 
     default:
       return state;

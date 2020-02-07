@@ -1,6 +1,6 @@
 import { taskType } from "./task.type";
 
-export const taskTest = () => ({
-  action: taskType.TEST,
-  payload: "this is test function of redux"
+export const taskTest = message => ({
+  type: taskType.TEST,
+  payload: message
 });
