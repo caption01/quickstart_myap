@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
+// component
 import BasePage from "../components/layout/basePage";
+
+// action
+import { taskTest } from "../redux/task/task.action";
 
 const Index = props => {
   console.log(props.taskState);
@@ -16,4 +20,8 @@ const mapStateToProps = state => ({
   taskState: state.task
 });
 
-export default connect(mapStateToProps, null)(Index);
+const mapDispatchToProps = dispatch => ({
+  testTask: () => dispatch(taskTast())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
